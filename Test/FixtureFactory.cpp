@@ -37,7 +37,7 @@ Polygon FixtureFactory::createPentagon() const
     points.push_back(Point(8, 0));
     points.push_back(Point(8, 2));
     points.push_back(Point(4, 5));
-    points.push_back(Point(5, 0));
+    points.push_back(Point(0, 5));
     points.push_back(Point(0, 0));
     return Polygon(points);
 }

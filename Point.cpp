@@ -2,14 +2,23 @@
 // Created by Oysha on 08/01/2018.
 //
 
+#include <cmath>
 #include <cfloat>
 #include "Point.h"
 
 
-const Point Point::InvalidPoint = Point(DBL_MAX, DBL_MAX);
-
-
-Point::Point(double _x, double _y) : x(_x), y(_y)
+bool operator==(const Point &p1, const Point &p2)
 {
+    return fabs(p1.x - p2.x) < DBL_EPSILON
+           && fabs(p1.y - p2.y) < DBL_EPSILON;
+}
 
+
+Point::Point(double x, double y, bool valid) : x(x), y(y), valid(valid)
+{
+}
+
+bool Point::isValid() const
+{
+    return valid;
 }

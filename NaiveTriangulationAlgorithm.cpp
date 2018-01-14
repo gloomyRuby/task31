@@ -38,7 +38,7 @@ Triangulation NaiveTriangulationAlgorithm::computeTriangulation(const Polygon &p
     NaiveTriangulationLess less(p);
     std::sort(chords.begin(), chords.end(), less);
 
-    int n = static_cast<int>(p.numOfVertex()) - 3;
+    int n = static_cast<int>(p.vertexCount()) - 3;
     result.push_back(chords[0]);
 
     int i = 1;

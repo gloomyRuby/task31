@@ -9,7 +9,7 @@ std::vector<Chord> ChordExtractor::chordsFromPolygon(const Polygon &p) const
 {
     std::vector<Chord> result;
 
-    int n = static_cast<int>(p.numOfVertex());
+    int n = static_cast<int>(p.vertexCount());
 
     for (int i = 2; i < n - 1; i++) {
         result.push_back(Chord(0, i));

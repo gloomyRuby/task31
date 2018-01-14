@@ -38,7 +38,7 @@ void PointsReaderTest::testReadSquare()
     PointsReader sut;
 
     // given
-//    std::string data("square.txt");
+//    std::string data("5\n0 0\n1 0\n1 1\n0 1\n0 0");
 //    std::istringstream input(data);
 
     // when

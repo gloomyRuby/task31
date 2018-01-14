@@ -7,8 +7,6 @@
 #include "ChordMath.h"
 
 
-//static const double DBL_DELTA = 0.00000000001;
-
 ChordMath::ChordMath(const Polygon &_polygon) : polygon(_polygon)
 {
 
@@ -16,10 +14,10 @@ ChordMath::ChordMath(const Polygon &_polygon) : polygon(_polygon)
 
 Point ChordMath::getPointOfCrossing(const Chord &ch1, const Chord &ch2) const
 {
-    Point p1 = polygon.getVertexAtIndex(ch1.getBegin());
-    Point p2 = polygon.getVertexAtIndex(ch1.getEnd());
-    Point p3 = polygon.getVertexAtIndex(ch2.getBegin());
-    Point p4 = polygon.getVertexAtIndex(ch2.getEnd());
+    Point p1 = polygon.vertexAtIndex(ch1.getBegin());
+    Point p2 = polygon.vertexAtIndex(ch1.getEnd());
+    Point p3 = polygon.vertexAtIndex(ch2.getBegin());
+    Point p4 = polygon.vertexAtIndex(ch2.getEnd());
 
     double x1 = p1.x;
     double y1 = p1.y;
@@ -33,7 +31,7 @@ Point ChordMath::getPointOfCrossing(const Chord &ch1, const Chord &ch2) const
 
 // if d == 0  => they do not cross. what should it return?
     if (fabs(d) <= 1) {
-        return Point::InvalidPoint;
+        return Point(0, 0, false);
     }
 
     double x;
@@ -44,36 +42,54 @@ Point ChordMath::getPointOfCrossing(const Chord &ch1, const Chord &ch2) const
     return Point(x, y);
 }
 
-bool ChordMath::isPointInsidePolygon(const Polygon &p, const Point &a) const
+bool ChordMath::isPointInsidePolygon(const Point &p) const
 {
-    bool c = false;
-    for (size_t i = 0, j = p.numOfVertex(); i < p.numOfVertex(); j = i++) {
+    const unsigned int n = polygon.vertexCount();
 
-        double dx = p.getVertexAtIndex(j).x - p.getVertexAtIndex(i).x;
-        double dy_i = a.y - p.getVertexAtIndex(i).y;
-        double dy_j = p.getVertexAtIndex(j).y - p.getVertexAtIndex(i).y;
-        double delta = dx * dy_i / dy_j + p.getVertexAtIndex(i).x;
-        bool isIntersectedWithY = (p.getVertexAtIndex(i).y <= a.y) && (a.y < p.getVertexAtIndex(j).y);
-        bool isIntersectedWithY2 = (p.getVertexAtIndex(j).y <= a.y) && (a.y < p.getVertexAtIndex(i).y);
+    int c = 0;
+    for (size_t i = 0, j = n - 1; i < n; j = i++) {
 
-        if ((isIntersectedWithY || isIntersectedWithY2) && (a.x > delta)) {
-            c = !c;
+        double x = p.x;
+        double y = p.y;
+        double xp_i = polygon.vertexAtIndex(i).x;
+        double xp_j = polygon.vertexAtIndex(j).x;
+        double yp_i = polygon.vertexAtIndex(i).y;
+        double yp_j = polygon.vertexAtIndex(j).y;
+
+        if ((((yp_i <= y) && (y < yp_j)) || ((yp_j <= y) && (y < yp_i)))
+            && (x > (xp_j - xp_i) * (y - yp_i) / (yp_j - yp_i) + xp_i))
+        {
+            c++;
         }
     }
-    return c;
+
+    return c % 2 == 1;
 }
 
 bool ChordMath::isCrossing(const Chord &ch1, const Chord &ch2) const
 {
-    Point pointOfCrossing = getPointOfCrossing(ch1, ch2);
-    return isPointInsidePolygon(polygon, pointOfCrossing);
+    Point p = getPointOfCrossing(ch1, ch2);
+    if (p.isValid()) {
+        return isPointInsidePolygon(p) && !isPointEqualToPolygonVertex(p);
+    }
+    return false;
 }
 
+bool ChordMath::isPointEqualToPolygonVertex(const Point &p) const
+{
+    for (int i = 0; i < polygon.vertexCount(); ++i) {
+        Point q = polygon.vertexAtIndex(i);
+        if (p == q) {
+            return true;
+        }
+    }
+    return false;
+}
 
 double ChordMath::squaredLength(const Polygon &polygon, const Chord &ch) const
 {
-    Point p1 = polygon.getVertexAtIndex(ch.getBegin());
-    Point p2 = polygon.getVertexAtIndex(ch.getEnd());
+    Point p1 = polygon.vertexAtIndex(ch.getBegin());
+    Point p2 = polygon.vertexAtIndex(ch.getEnd());
     double dx = p1.x - p2.x;
     double dy = p1.y - p2.y;
     return dx * dx + dy * dy;

@@ -15,6 +15,6 @@ class Polygon
     const std::vector<Point> points;
 public:
     Polygon(const std::vector<Point> &_points);
-    size_t numOfVertex() const;
-    Point getVertexAtIndex(const unsigned int index) const;
+    unsigned int vertexCount() const;
+    Point vertexAtIndex(const unsigned int index) const;
 };

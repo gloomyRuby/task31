@@ -18,7 +18,7 @@ class ChordTest
 public:
     void test() const;
 
-    ChordTest(const FixtureFactory &fixtureFactory);
+    ChordTest(const FixtureFactory &fixtureFactory = FixtureFactory());
 
 private:
     void testIsCrossing() const;

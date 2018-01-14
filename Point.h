@@ -6,14 +6,16 @@
 #pragma once
 
 
-struct Point
+class Point
 {
-    static const Point InvalidPoint;
+    bool valid;
+
+public:
     double x, y;
-    Point(double _x, double _y);
+    bool isValid() const;
+
+    Point(double x, double y, bool valid = true);
 };
 
-inline bool operator==(const Point &p1, const Point &p2)
-{
-    return p1.x == p2.x && p1.y == p2.y;
-}
+
+bool operator==(const Point &p1, const Point &p2);

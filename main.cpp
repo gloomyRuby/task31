@@ -1,20 +1,11 @@
-#include <iostream>
-#include "PointsReader.h"
-#include "Test/ChordExtractorTest.h"
-#include "Test/AlgorithmTests.h"
-#include "Test/PointsReaderTest.h"
+#include "Test/TestRunner.h"
 
 
 int main()
 {
-    PointsReaderTest readerTest;
-    readerTest.test();
-
-    AlgorithmTests algorithmTests;
-    algorithmTests.test();
-
-    ChordExtractorTest chordExtractorTest;
-    chordExtractorTest.test();
+    TestRunner runner;
+    runner.runTests();
 
     return 0;
 }
+
