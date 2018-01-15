@@ -13,5 +13,5 @@
 class PointsReader
 {
 public:
-    std::vector<Point> *getPoints(const char *filename);
+    std::vector<Point> * getPoints(std::istream &input) const;
 };

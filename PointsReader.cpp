@@ -8,22 +8,17 @@
 
 // 1. переделать на iostream
 // 2. написать тестовый класс используя iostringstream
-std::vector<Point> *PointsReader::getPoints(const char *filename)
+std::vector<Point> * PointsReader::getPoints(std::istream &input) const
 {
     int n;
     double x, y;
     std::vector<Point> *points = new std::vector<Point>();
 
-    std::fstream file;
-    file.open(filename, std::fstream::in);
-
-    file >> n;
+    input >> n;
     for (int i = 0; i < n; i++) {
-        file >> x >> y;
+        input >> x >> y;
         points->push_back(Point(x, y));
     }
-
-    file.close();
 
     return points;
 }

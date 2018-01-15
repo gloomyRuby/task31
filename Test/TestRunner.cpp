@@ -11,8 +11,8 @@
 
 void TestRunner::runTests() const
 {
-//    PointsReaderTest readerTest;
-//    readerTest.test();
+    PointsReaderTest readerTest;
+    readerTest.test();
 
     AlgorithmTests algorithmTests;
     algorithmTests.test();

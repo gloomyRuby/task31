@@ -21,11 +21,11 @@ void PointsReaderTest::testSimple() const
     PointsReader sut;
 
     // given
-//    std::string data("2\n1 1\n2 2");
-//    std::istringstream input(data);
+    std::string data("2\n1 1\n2 2");
+    std::istringstream input(data);
 
     // when
-    std::vector<Point> *points = sut.getPoints("input.txt");
+    std::vector<Point> *points = sut.getPoints(input);
 
     // then
     Assert::assertTrue(points->size() == 2);
@@ -38,11 +38,11 @@ void PointsReaderTest::testReadSquare()
     PointsReader sut;
 
     // given
-//    std::string data("5\n0 0\n1 0\n1 1\n0 1\n0 0");
-//    std::istringstream input(data);
+    std::string data("5\n0 0\n1 0\n1 1\n0 1\n0 0");
+    std::istringstream input(data);
 
     // when
-    std::vector<Point> *points = sut.getPoints("square.txt");
+    std::vector<Point> *points = sut.getPoints(input);
 
     // then
     Assert::assertTrue(points->size() == 5);
