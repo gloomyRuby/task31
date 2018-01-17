@@ -5,6 +5,11 @@
 #include "Polygon.h"
 
 
+Polygon::Polygon() : points(0)
+{
+
+}
+
 Polygon::Polygon(const std::vector<Point> &_points) : points(_points)
 {
 
