@@ -12,5 +12,5 @@
 class RegularPolygon
 {
 public:
-    Polygon &createRegularPolygon(int n, double radius);
+    Polygon createRegularPolygon(int n, double radius);
 };

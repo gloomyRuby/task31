@@ -5,7 +5,7 @@
 #include "RegularPolygon.h"
 
 
-Polygon &RegularPolygon::createRegularPolygon(int n, double radius)
+Polygon RegularPolygon::createRegularPolygon(int n, double radius)
 {
     double R = radius / cos(M_PI/n);
     double phi = M_PI / n;
@@ -28,7 +28,7 @@ Polygon &RegularPolygon::createRegularPolygon(int n, double radius)
     }
     tmpPolygon.push_back(firstAndLast);
 
-    Polygon regularPolygon = Polygon(tmpPolygon);
+//    Polygon regularPolygon = Polygon(tmpPolygon);
 
-    return regularPolygon;
+    return Polygon(tmpPolygon);
 }

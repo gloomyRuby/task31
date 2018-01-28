@@ -6,11 +6,12 @@
 #include <cfloat>
 #include "Point.h"
 
+// DBL_EPSILON
 
 bool operator==(const Point &p1, const Point &p2)
 {
-    return fabs(p1.x - p2.x) < DBL_EPSILON
-           && fabs(p1.y - p2.y) < DBL_EPSILON;
+    return fabs(p1.x - p2.x) < 0.000001
+           && fabs(p1.y - p2.y) < 0.000001;
 }
 
 
