@@ -1,5 +1,5 @@
 //
-// Created by Oysha on 18/01/2018.
+// Created by Oysha on 28/01/2018.
 //
 
 
@@ -8,5 +8,6 @@
 
 class RegularPolygonTest
 {
-
+public:
+    void test() const;
 };
