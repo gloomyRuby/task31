@@ -24,7 +24,7 @@ NaiveTriangulationAlgorithm::NaiveTriangulationAlgorithm(const ChordExtractor &_
 
 }
 
-Triangulation NaiveTriangulationAlgorithm::computeTriangulation(const Polygon &p) const
+Triangulation NaiveTriangulationAlgorithm::computeTriangulation(Polygon &p)
 {
     const ChordMath chordMath(p);
 
@@ -44,9 +44,9 @@ Triangulation NaiveTriangulationAlgorithm::computeTriangulation(const Polygon &p
     int i = 1;
     while (i < chords.size() && result.size() < n) {
         Chord x = chords[i];
-
         bool isSuitable = true;
         for (int j = 0; j < result.size(); j++) {
+            step++;
             if (chordMath.isCrossing(x, result[j])) {
                 isSuitable = false;
                 break;

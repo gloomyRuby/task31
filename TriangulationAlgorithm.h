@@ -12,5 +12,5 @@
 class TriangulationAlgorithm
 {
 public:
-    virtual Triangulation computeTriangulation(const Polygon &p) const = 0;
+    virtual Triangulation computeTriangulation(Polygon &p)  = 0;
 };

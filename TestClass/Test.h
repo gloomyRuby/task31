@@ -8,5 +8,6 @@
 
 class Test
 {
-
+public:
+    void test() const;
 };
