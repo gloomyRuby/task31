@@ -74,5 +74,5 @@ void AlgorithmTests::testPentagon() const
     Chord ch1 = t.chords[0];
     Chord ch2 = t.chords[1];
     Assert::assertTrue((chordMath.squaredLength(pentagon, ch1) + chordMath.squaredLength(pentagon, ch2)) <= SQR(16));
-    std::cout << sut.step << '\n';
+//    std::cout << sut.step << '\n';
 }

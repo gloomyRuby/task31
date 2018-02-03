@@ -5,6 +5,7 @@
 #include <cmath>
 #include "Polygon.h"
 #include "ChordMath.h"
+extern long long int STEP;
 
 
 ChordMath::ChordMath(const Polygon &_polygon) : polygon(_polygon)
@@ -49,6 +50,8 @@ bool ChordMath::isPointInsidePolygon(const Point &p) const
     int c = 0;
     for (size_t i = 0, j = n - 1; i < n; j = i++) {
 
+        STEP++;
+
         double x = p.x;
         double y = p.y;
         double xp_i = polygon.vertexAtIndex(i).x;
@@ -78,6 +81,8 @@ bool ChordMath::isCrossing(const Chord &ch1, const Chord &ch2) const
 bool ChordMath::isPointEqualToPolygonVertex(const Point &p) const
 {
     for (int i = 0; i < polygon.vertexCount(); ++i) {
+        STEP++;
+
         Point q = polygon.vertexAtIndex(i);
         if (p == q) {
             return true;

@@ -46,7 +46,6 @@ Triangulation NaiveTriangulationAlgorithm::computeTriangulation(Polygon &p)
         Chord x = chords[i];
         bool isSuitable = true;
         for (int j = 0; j < result.size(); j++) {
-            step++;
             if (chordMath.isCrossing(x, result[j])) {
                 isSuitable = false;
                 break;

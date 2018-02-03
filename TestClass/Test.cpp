@@ -8,6 +8,7 @@
 #include "../NaiveTriangulationAlgorithm.h"
 #include "PolygonInCircle.h"
 #include <ctime>
+extern long long int STEP;
 
 
 void Test::RegularPolygonTest() const
@@ -17,8 +18,8 @@ void Test::RegularPolygonTest() const
 
     RegularPolygon testPolygon;
     double time;
-    for (int i = 100; i < 180; i += 10) {
-        double A = i * i * log(i);
+    for (int i = 10; i < 80; i += 10) {
+        double A = i * i * i * i;
 
         Polygon p = testPolygon.createRegularPolygon(i, 6);
         NaiveTriangulationAlgorithm triangulationAlgorithm;
@@ -28,11 +29,12 @@ void Test::RegularPolygonTest() const
         double end = clock();
 
         time = (double)(end - start) / CLOCKS_PER_SEC;
-        int step = triangulationAlgorithm.step;
+        long long int step = STEP;
         double timePerStep = (double)time / step;
         double timePerA = time / A;
 
         std::cout << i << "\t" << step << "\t" << time << "\t\t" << timePerStep << "\t" << timePerA << "\n";
+        STEP = 0;
     }
 }
 
@@ -45,7 +47,7 @@ void Test::PolygonInCircleTest() const
     double time;
 
     for (int i = 50; i < 100; i += 10) {
-        double A = i * i * log(i);
+        double A = i * i * i;
 
         Polygon p = testPolygon.createPolygonInCircle(i, 8);
         NaiveTriangulationAlgorithm triangulationAlgorithm;
@@ -55,7 +57,7 @@ void Test::PolygonInCircleTest() const
         double end = clock();
 
         time = (double)(end - start) / CLOCKS_PER_SEC;
-        int step = triangulationAlgorithm.step;
+        long long int step = STEP;
         double timePerStep = (double)time / step;
         double timePerA = time / A;
 
