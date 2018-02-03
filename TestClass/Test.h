@@ -10,4 +10,6 @@ class Test
 {
 public:
     void test() const;
+    void RegularPolygonTest() const;
+    void PolygonInCircleTest() const;
 };
