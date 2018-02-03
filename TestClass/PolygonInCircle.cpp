@@ -11,7 +11,7 @@ int comp2 (const void * a, const void * b)
     return ( *(double*)b - *(double*)a );
 };
 
-Polygon PolygonInCircle::createPolygonInCircle(double R, int n)
+Polygon PolygonInCircle::createPolygonInCircle(int n, double R)
 {
     double mod = R;
     double arg = 0, phi = 0, array[10000];

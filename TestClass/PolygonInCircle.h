@@ -11,5 +11,5 @@
 class PolygonInCircle
 {
 public:
-    Polygon createPolygonInCircle(double R, int n);
+    Polygon createPolygonInCircle(int n, double R);
 };

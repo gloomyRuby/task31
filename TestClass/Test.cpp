@@ -17,7 +17,7 @@ void Test::RegularPolygonTest() const
 
     RegularPolygon testPolygon;
     double time;
-    for (int i = 100; i < 1000; i += 200) {
+    for (int i = 100; i < 180; i += 10) {
         double A = i * i * log(i);
 
         Polygon p = testPolygon.createRegularPolygon(i, 6);
@@ -61,8 +61,6 @@ void Test::PolygonInCircleTest() const
 
         std::cout << i << "\t" << step << "\t" << time << "\t\t" << timePerStep << "\t" << timePerA << "\n";
     }
-
-
 }
 
 void Test::test() const

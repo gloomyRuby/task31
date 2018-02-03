@@ -13,7 +13,7 @@
 class NaiveTriangulationAlgorithm : TriangulationAlgorithm
 {
 public:
-    int step = 0;
+//    int step = 0;
     NaiveTriangulationAlgorithm(const ChordExtractor &chordExtractor = ChordExtractor());
 
     Triangulation computeTriangulation(Polygon &p);

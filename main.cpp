@@ -11,8 +11,8 @@ int main()
 //    RegularPolygonTest regularPolygonTest;
 //    regularPolygonTest.test();
     Test test;
-    test.RegularPolygonTest();
-//    test.PolygonInCircleTest();
+//    test.RegularPolygonTest();
+    test.PolygonInCircleTest();
     return 0;
 }
 
