@@ -3,6 +3,7 @@
 //
 
 #include <cmath>
+#include <iostream>
 #include "Polygon.h"
 #include "ChordMath.h"
 extern long long int STEP;
@@ -71,16 +72,16 @@ bool ChordMath::isPointInsidePolygon(const Point &p) const
 
 bool ChordMath::isCrossing(const Chord &ch1, const Chord &ch2) const
 {
+
     Point p = getPointOfCrossing(ch1, ch2);
-    if (p.isValid()) {
-        return isPointInsidePolygon(p) && !isPointEqualToPolygonVertex(p);
-    }
-    return false;
+    return isPointInsidePolygon(p) && !isPointEqualToPolygonVertex(p);
+
 }
 
 bool ChordMath::isPointEqualToPolygonVertex(const Point &p) const
 {
     for (int i = 0; i < polygon.vertexCount(); ++i) {
+
         STEP++;
 
         Point q = polygon.vertexAtIndex(i);
@@ -88,6 +89,7 @@ bool ChordMath::isPointEqualToPolygonVertex(const Point &p) const
             return true;
         }
     }
+
     return false;
 }
 
@@ -97,5 +99,5 @@ double ChordMath::squaredLength(const Polygon &polygon, const Chord &ch) const
     Point p2 = polygon.vertexAtIndex(ch.getEnd());
     double dx = p1.x - p2.x;
     double dy = p1.y - p2.y;
-    return dx * dx + dy * dy;
+    return sqrt(dx * dx + dy * dy);
 }

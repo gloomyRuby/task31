@@ -13,4 +13,5 @@ class RegularPolygon
 {
 public:
     Polygon createRegularPolygon(int n, double radius);
+    double chordsSum(Polygon p);
 };

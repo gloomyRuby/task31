@@ -3,6 +3,21 @@
 //
 
 #include "RegularPolygon.h"
+#include "../ChordExtractor.h"
+#include "../ChordMath.h"
+
+
+struct ChordLess
+{
+    const Polygon &polygon;
+    ChordLess(const Polygon &polygon) : polygon(polygon) {}
+
+    ChordMath chordMath = ChordMath(polygon);
+    bool operator()(const Chord &x, const Chord &y)
+    {
+        return chordMath.squaredLength(polygon, x) < chordMath.squaredLength(polygon, y);
+    }
+};
 
 
 Polygon RegularPolygon::createRegularPolygon(int n, double radius)
@@ -28,7 +43,42 @@ Polygon RegularPolygon::createRegularPolygon(int n, double radius)
     }
     tmpPolygon.push_back(firstAndLast);
 
-//    Polygon regularPolygon = Polygon(tmpPolygon);
 
     return Polygon(tmpPolygon);
+}
+
+double RegularPolygon::chordsSum(Polygon p)
+{
+    double sum = 0;
+    ChordExtractor ch;
+    std::vector<Chord> chords = ch.chordsFromPolygon(p);
+
+    ChordLess less(p);
+    std::sort(chords.begin(), chords.end(), less);
+
+    ChordMath chordMath(p);
+    int n = p.vertexCount();
+
+    std::vector<Chord> result;
+    int i = 1;
+    result.push_back(chords[0]);
+    sum = chordMath.squaredLength(p, result[0]);
+
+    while (i < n - 3) {
+        Chord x = chords[i];
+        bool isSuitable = true;
+        for (int j = 0; j < result.size(); j++) {
+            if (chordMath.isCrossing(x, result[j])) {
+                isSuitable = false;
+                break;
+            }
+        }
+        if (isSuitable) {
+            result.push_back(x);
+        }
+        i++;
+        sum += chordMath.squaredLength(p, x);
+    }
+
+    return sum;
 }

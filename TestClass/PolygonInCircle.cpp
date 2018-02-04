@@ -19,10 +19,10 @@ Polygon PolygonInCircle::createPolygonInCircle(int n, double R)
 
     std::vector<Point> tmpPolygon;
 
+    srand(9);
     for (int i = 0; i < n; ++i) {
         arg = (int)(phi + rand() % 360) % 360;
         phi = arg;
-        srand(time(NULL));
         array[i] = arg;
     }
     qsort(array, n, sizeof(double), comp2);

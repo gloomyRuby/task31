@@ -22,7 +22,7 @@ void AlgorithmTests::test() const
 
 void AlgorithmTests::testSquare() const
 {
-    // sut - system under test
+    // sut - system under RandomTest
     NaiveTriangulationAlgorithm sut;
 
     // given

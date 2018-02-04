@@ -4,6 +4,7 @@
 
 #include <cmath>
 #include <cfloat>
+#include <iostream>
 #include "Point.h"
 
 // DBL_EPSILON

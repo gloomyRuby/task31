@@ -9,7 +9,10 @@
 class Test
 {
 public:
-    void test() const;
-    void RegularPolygonTest() const;
-    void PolygonInCircleTest() const;
+    void RandomTest(int start, int end, int diff) const;
+    void RegularTest(int start, int end, int diff) const;
+    void naiveRegularTest(int start, int end, int diff) const;
+    void optimizedRegularTest(int start, int end, int diff) const;
+    void naivePolygonInCircleTest(int start, int end, int diff) const;
+    void oprimizedPolygonInCircleTest(int start, int end, int diff) const;
 };
