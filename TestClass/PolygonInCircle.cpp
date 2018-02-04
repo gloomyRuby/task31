@@ -19,7 +19,7 @@ Polygon PolygonInCircle::createPolygonInCircle(int n, double R)
 
     std::vector<Point> tmpPolygon;
 
-    srand(9);
+    srand(10);
     for (int i = 0; i < n; ++i) {
         arg = (int)(phi + rand() % 360) % 360;
         phi = arg;

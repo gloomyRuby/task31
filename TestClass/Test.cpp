@@ -105,7 +105,7 @@ void Test::naivePolygonInCircleTest(int start, int end, int diff) const
 
     for (int i = start; i < end; i += diff) {
         double k = i;
-        double A = k * k * k * log(k);
+        double A = k * k * k * k * k * k;
 
         Polygon p = testPolygon.createPolygonInCircle(i, 6);
         NaiveTriangulationAlgorithm naiveAlgorithm;

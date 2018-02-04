@@ -48,30 +48,33 @@ Triangulation OptimizedTriangulationAlgorithm::computeTriangulation(Polygon &p)
         std::vector<Chord> result;
         result.push_back(chords[l]);
 
-        int i = 1;
+        int i = 0;
         while (i < chords.size() && result.size() < n) {
-            Chord x = chords[i];
-            bool isSuitable = true;
-            for (int j = 0; j < result.size(); j++) {
-                if (chordMath.isCrossing(x, result[j])) {
-                    isSuitable = false;
-                    break;
+            if (i != l) {
+                Chord x = chords[i];
+                bool isSuitable = true;
+                for (int j = 0; j < result.size(); j++) {
+                    if (chordMath.isCrossing(x, result[j])) {
+                        isSuitable = false;
+                        break;
+                    }
                 }
+                if (isSuitable) {
+                    result.push_back(x);
+                }
+                i++;
+            } else {
+                i++;
             }
-            if (isSuitable) {
-                result.push_back(x);
-            }
-            i++;
         }
-
+        sum = 0;
         for (int k = 0; k < result.size(); ++k) {
             sum += chordMath.squaredLength(p, result[k]);
         }
-        if (sum < minSum) {
+        if (sum < minSum && result.size() == n) {
             minSum = sum;
             finalResult = result;
         }
-        sum = 0;
     }
 
     sum = minSum;
